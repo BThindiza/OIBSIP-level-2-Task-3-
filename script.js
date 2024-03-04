@@ -7,15 +7,12 @@ function addTask(){
                     alert('Please enter a task!');
                     return;
                 }
-                let li =document.createElement("li");
-                li.textContent = taskInput.value + "-" +taskDate.value;
+                let li = document.createElement("li");
+                li.textContent = taskInput.value + "-" + taskDate.value;
                 li.addEventListener(click ,function(){
                     li.classList.toggle("completed")
                 });
 
-            let li =document.createElement("li");
-            li.textContent = taskInput.value;
-            
         let deleteBtn = document.createElement("button");
         deleteBtn.textContent = "Delete";
         deleteBtn.className = "delete-btn";
@@ -27,6 +24,7 @@ function addTask(){
         taskList.appendChild(li);
     
         taskInput.value = "";
+        taskDate.value = "";
     }
 
    
