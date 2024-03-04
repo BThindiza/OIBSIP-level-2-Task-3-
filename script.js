@@ -1,32 +1,36 @@
 function addTask(){
     let taskInput= document.getElementById("taskInput");
-    let taskDate = document.getElementById("taskDate");
     let taskList= document.getElementById("taskList");
     
         if(taskInput.value.trim() === ""){
                     alert('Please enter a task!');
                     return;
                 }
-                let li = document.createElement("li");
-                li.textContent = taskInput.value + "-" + taskDate.value;
-                li.addEventListener(click ,function(){
-                    li.classList.toggle("completed")
+                var li = document.createElement("li");
+                var checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.addEventListener("change", function() {
+                    if (checkbox.checked) {
+                        li.style.textDecoration = "line-through";
+                    } else {
+                        li.style.textDecoration = "none";
+                    }
                 });
-
-        let deleteBtn = document.createElement("button");
-        deleteBtn.textContent = "Delete";
-        deleteBtn.className = "delete-btn";
-        deleteBtn.addEventListener("click", function() {
-            taskList.removeChild(li);
-        });
-    
-        li.appendChild(deleteBtn);
-        taskList.appendChild(li);
-    
-        taskInput.value = "";
-        taskDate.value = "";
-    }
-
-   
-    
             
+                li.textContent = taskInput.value + " - " + getCurrentDate();
+                li.appendChild(checkbox);
+                taskList.appendChild(li);
+            
+                taskInput.value = "";
+            }
+            
+            function getCurrentDate() {
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+                var yyyy = today.getFullYear();
+            
+                return mm + '/' + dd + '/' + yyyy;
+            }
+            
+            document.getElementById("currentDate").textContent = "Today's Date: " + getCurrentDate();
