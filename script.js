@@ -1,15 +1,21 @@
 function addTask(){
-    lettaskInput= document.getElementById("taskInput");
+    let taskInput= document.getElementById("taskInput");
+    let taskDate = document.getElementById("taskDate");
     let taskList= document.getElementById("taskList");
     
-        if(taskInput.value.trim()===""){
+        if(taskInput.value.trim() === ""){
                     alert('Please enter a task!');
                     return;
                 }
+                let li =document.createElement("li");
+                li.textContent = taskInput.value + "-" +taskDate.value;
+                li.addEventListener(click ,function(){
+                    li.classList.toggle("completed")
+                });
+
             let li =document.createElement("li");
             li.textContent = taskInput.value;
             
-    
         let deleteBtn = document.createElement("button");
         deleteBtn.textContent = "Delete";
         deleteBtn.className = "delete-btn";
@@ -22,18 +28,7 @@ function addTask(){
     
         taskInput.value = "";
     }
-    //funtion to display date.
-    
-    function displayDate(){
-        let dateElement = document.getElementById("date");
-        let currentDate = new Date();
-        let dateString = currentDate.toDateString();
-        dateElement.textContent ="" + dateString;
-    }
-    window.onload = displayDate;
-    
-    
-        
-    
+
+   
     
             
